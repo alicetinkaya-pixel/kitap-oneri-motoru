@@ -1,7 +1,6 @@
 // ==========================================================
 // 1. FIREBASE YAPILANDIRMASI (SİZİN BİLGİLERİNİZ)
 // ==========================================================
-// NOT: Firestore yerine Realtime Database kullanılmıştır.
 
 const firebaseConfig = {
     apiKey: "AIzaSyCRCFgjybvfnpdB4U2nL2u3vg5nH9fzJzs",
@@ -99,7 +98,7 @@ const isimInput = document.getElementById('isim-input');
 const dogumGunuInput = document.getElementById('dogum-gunu-input');
 const dogumAyiSelect = document.getElementById('dogum-ayi-select');
 const yasInput = document.getElementById('yas-input');
-const turSelect = document.getElementById('tur-select');
+const turSelect = document.getElementById('tur-select'); // Hatanın çözüldüğü kısım
 const oneriButonu = document.getElementById('oneri-butonu');
 const hesaplananBurcAlani = document.getElementById('hesaplanan-burc');
 const sonucAlani = document.getElementById('sonuc-alani');
@@ -185,7 +184,7 @@ function oyKaydet(kitapAdi, yazarAdi, oyTipi) {
     }, (error, committed) => {
         if (error) {
             console.error("İşlem başarısız oldu:", error);
-            alert("Oylama kaydedilirken bir hata oluştu.");
+            alert("Oylama kaydedilirken bir hata oluştu. (Firebase kurallarınızı kontrol edin)");
         } else if (committed) {
             console.log("Oylama başarıyla kaydedildi.");
             // İstatistikler otomatik güncelleneceği için ek bir işlem gerekmez
