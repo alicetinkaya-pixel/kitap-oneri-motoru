@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kitap Öneri Motoru | Burç, Yaş ve Türe Göre Öneri</title>
+    <title>Kitap Öneri Motoru | Gerçek Zamanlı İstatistik</title>
     <link rel="stylesheet" href="style.css">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -89,20 +90,19 @@
                 <p style="text-align: center; color: #777;">Henüz yeterli oy toplanmadı...</p>
             </div>
             
-            <button id="istatistik-gizle-butonu" class="gizle-butonu" style="display: none;">
+            <button id="istatistik-gizle-butonu" class="gizle-butonu">
                 ▲ İstatistikleri Gizle
             </button>
         </div>
-        <div id="favoriler-alani" class="favoriler-alani">
-            </div>
         
-        <div id="yonetici-paneli" class="favoriler-alani"> 
-            </div>
-        </div>
+        <div id="favoriler-alani" class="favoriler-alani"></div>
+        
+        <div id="yonetici-paneli" class="favoriler-alani"></div>
+    </div>
     
     <footer>
         <div class="container footer-content">
-            <p>&copy; ${new Date().getFullYear()} Kitap Öneri Motoru | Tüm Hakları Saklıdır.</p>
+            <p>&copy; 2025 Kitap Öneri Motoru | Tüm Hakları Saklıdır.</p>
             <p>
                 <a href="#" target="_blank">Gizlilik Politikası</a> |
                 <a href="#" target="_blank">Kullanım Koşulları</a>
@@ -110,12 +110,10 @@
             <p class="uyari-metni">Bu site demo amaçlıdır. Öneriler ve veriler gerçek değildir. Sosyal medya bağlantıları ve yasal metinler örnek amaçlı yer tutuculardır.</p>
         </div>
     </footer>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
     
-    <script src="script.js"></script>
-</body>
-</html>
     <script src="script.js"></script>
 </body>
 </html>
