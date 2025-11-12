@@ -3,7 +3,8 @@
 // ==========================================================
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCRCFgjybvfnpdB4U2nL2u3vg5nH9fzJzs",
+    // BURAYA KENDİ GERÇEK FIREBASE BİLGİLERİNİZİ YAPIŞTIRIN!
+    apiKey: "AIzaSyCRCFgjybvfnpdB4U2nL2u3vg5nH9fzJzs", 
     authDomain: "kitap-oneri-motoru-canli-b7b8f.firebaseapp.com",
     projectId: "kitap-oneri-motoru-canli-b7b8f",
     storageBucket: "kitap-oneri-motoru-canli-b7b8f.firebasestorage.app",
@@ -18,69 +19,69 @@ const database = app.database();
 const kitaplarRef = database.ref('kitaplar'); // Tüm kitap verilerini tutacağımız ana referans
 
 // ==========================================================
-// 2. KİTAP VE BURÇ VERİLERİ (SABİT VERİLER)
+// 2. KİTAP VE BURÇ VERİLERİ (RESİM SORUNU DÜZELTİLDİ)
 // ==========================================================
 
 const kitapVerileri = {
     terazi: {
-        genel: { isim: "Bilinmeyen Bir Kadının Mektubu", yazar: "Stefan Zweig", resim: "mevcut degil", aciklama: "Romantizm ve denge arayan Teraziler için, tutkulu ve hüzünlü bir klasik.", tur: "genel" },
-        fantastik: { isim: "Dune", yazar: "Frank Herbert", resim: "mevcut degil", aciklama: "Sabırlı ve köklü Teraziler için derinliği olan bir bilim kurgu klasiği", tur: "fantastik" },
-        gelisim: { isim: "Atomik Alışkanlıklar", yazar: "James Clear", resim: "mevcut degil", aciklama: "Pratik ve düzenli Boğaların günlük rutinlerini geliştirmesi için.", tur: "gelisim" }
+        genel: { isim: "Bilinmeyen Bir Kadının Mektubu", yazar: "Stefan Zweig", resim: "", aciklama: "Romantizm ve denge arayan Teraziler için, tutkulu ve hüzünlü bir klasik.", tur: "genel" },
+        fantastik: { isim: "Dune", yazar: "Frank Herbert", resim: "", aciklama: "Sabırlı ve köklü Teraziler için derinliği olan bir bilim kurgu klasiği", tur: "fantastik" },
+        gelisim: { isim: "Atomik Alışkanlıklar", yazar: "James Clear", resim: "", aciklama: "Pratik ve düzenli Boğaların günlük rutinlerini geliştirmesi için.", tur: "gelisim" }
     },
     akrep: {
-        genel: { isim: "Suç ve Ceza", yazar: "Dostoyevski", resim: "mevcut degil", aciklama: "Gizemli ve derin Akreplerin ruh hallerine uygun, psikolojik bir başyapıt.", tur: "genel" },
-        fantastik: { isim: "Yüzüklerin Efendisi", yazar: "J.R.R. Tolkien", resim: "mevcut degil", aciklama: "Yoğun duygusal yolculukları seven Akrepler için epik bir macera.", tur: "fantastik" },
-        gelisim: { isim: "Duygusal Zeka", yazar: "Daniel Goleman", resim: "mevcut degil", aciklama: "Yoğun duyguları yönetmek isteyen Akrepler için bir rehber.", tur: "gelisim" }
+        genel: { isim: "Suç ve Ceza", yazar: "Dostoyevski", resim: "", aciklama: "Gizemli ve derin Akreplerin ruh hallerine uygun, psikolojik bir başyapıt.", tur: "genel" },
+        fantastik: { isim: "Yüzüklerin Efendisi", yazar: "J.R.R. Tolkien", resim: "", aciklama: "Yoğun duygusal yolculukları seven Akrepler için epik bir macera.", tur: "fantastik" },
+        gelisim: { isim: "Duygusal Zeka", yazar: "Daniel Goleman", resim: "", aciklama: "Yoğun duyguları yönetmek isteyen Akrepler için bir rehber.", tur: "gelisim" }
     },
     yay: {
-        genel: { isim: "Yol", yazar: "Jack Kerouac", resim: "mevcut degil", aciklama: "Özgürlüğüne düşkün ve maceraperest Yaylar için bir kült klasik.", tur: "genel" },
-        fantastik: { isim: "Otostopçunun Galaksi Rehberi", yazar: "Douglas Adams", resim: "mevcut degil", aciklama: "Mizahı ve felsefi sorgulamayı seven Yaylar için komik bir bilim kurgu.", tur: "fantastik" },
-        gelisim: { isim: "Homo Deus", yazar: "Yuval Noah Harari", resim: "mevcut degil", aciklama: "Geleceği ve felsefeyi merak eden Yaylar için derin bir eser.", tur: "gelisim" }
+        genel: { isim: "Yol", yazar: "Jack Kerouac", resim: "", aciklama: "Özgürlüğüne düşkün ve maceraperest Yaylar için bir kült klasik.", tur: "genel" },
+        fantastik: { isim: "Otostopçunun Galaksi Rehberi", yazar: "Douglas Adams", resim: "", aciklama: "Mizahı ve felsefi sorgulamayı seven Yaylar için komik bir bilim kurgu.", tur: "fantastik" },
+        gelisim: { isim: "Homo Deus", yazar: "Yuval Noah Harari", resim: "", aciklama: "Geleceği ve felsefeyi merak eden Yaylar için derin bir eser.", tur: "gelisim" }
     },
     oglak: {
-        genel: { isim: "Büyük Umutlar", yazar: "Charles Dickens", resim: "mevcut degil", aciklama: "Hırslı ve ciddi Oğlakların hayat yolculuğuna dair büyük bir roman.", tur: "genel" },
-        fantastik: { isim: "V for Vendetta", yazar: "Alan Moore", resim: "mevcut degil", aciklama: "Disiplinli ve eleştirel Oğlaklar için distopik bir çizgi roman klasiği.", tur: "fantastik" },
-        gelisim: { isim: "7 Etkili İnsan", yazar: "Stephen Covey", resim: "mevcut degil", aciklama: "Hedef odaklı Oğlakların verimliliğini artıracak temel bir rehber.", tur: "gelisim" }
+        genel: { isim: "Büyük Umutlar", yazar: "Charles Dickens", resim: "", aciklama: "Hırslı ve ciddi Oğlakların hayat yolculuğuna dair büyük bir roman.", tur: "genel" },
+        fantastik: { isim: "V for Vendetta", yazar: "Alan Moore", resim: "", aciklama: "Disiplinli ve eleştirel Oğlaklar için distopik bir çizgi roman klasiği.", tur: "fantastik" },
+        gelisim: { isim: "7 Etkili İnsan", yazar: "Stephen Covey", resim: "", aciklama: "Hedef odaklı Oğlakların verimliliğini artıracak temel bir rehber.", tur: "gelisim" }
     },
     kova: {
-        genel: { isim: "1984", yazar: "George Orwell", resim: "mevcut degil", aciklama: "Toplumsal düzeni sorgulayan Kovalar için distopik bir başyapıt.", tur: "genel" },
-        fantastik: { isim: "Cesur Yeni Dünya", yazar: "Aldous Huxley", resim: "mevcut degil", aciklama: "Yenilikçi ve farklı Kovalar için dikkat çekici bir bilim kurgu.", tur: "fantastik" },
-        gelisim: { isim: "Sapiens", yazar: "Yuval Noah Harari", resim: "mevcut degil", aciklama: "İnsanlığın tarihini merak eden Kovalar için geniş kapsamlı bir eser.", tur: "gelisim" }
+        genel: { isim: "1984", yazar: "George Orwell", resim: "", aciklama: "Toplumsal düzeni sorgulayan Kovalar için distopik bir başyapıt.", tur: "genel" },
+        fantastik: { isim: "Cesur Yeni Dünya", yazar: "Aldous Huxley", resim: "", aciklama: "Yenilikçi ve farklı Kovalar için dikkat çekici bir bilim kurgu.", tur: "fantastik" },
+        gelisim: { isim: "Sapiens", yazar: "Yuval Noah Harari", resim: "", aciklama: "İnsanlığın tarihini merak eden Kovalar için geniş kapsamlı bir eser.", tur: "gelisim" }
     },
     balik: {
-        genel: { isim: "Uçurtma Avcısı", yazar: "Khaled Hosseini", resim: "mevcut degil", aciklama: "Duygusal ve hayal gücü yüksek Balıklar için kalpleri ısıtan bir hikaye.", tur: "genel" },
-        fantastik: { isim: "Harry Potter ve Felsefe Taşı", yazar: "J.K. Rowling", resim: "mevcut degil", aciklama: "Hayalperest Balıkların kaçış dünyası, büyülü bir başlangıç.", tur: "fantastik" },
-        gelisim: { isim: "Yaratıcı Eylem", yazar: "Brenda Ueland", resim: "mevcut degil", aciklama: "Sanatsal yönü güçlü Balıkların yaratıcılığını serbest bırakması için.", tur: "gelisim" }
+        genel: { isim: "Uçurtma Avcısı", yazar: "Khaled Hosseini", resim: "", aciklama: "Duygusal ve hayal gücü yüksek Balıklar için kalpleri ısıtan bir hikaye.", tur: "genel" },
+        fantastik: { isim: "Harry Potter ve Felsefe Taşı", yazar: "J.K. Rowling", resim: "", aciklama: "Hayalperest Balıkların kaçış dünyası, büyülü bir başlangıç.", tur: "fantastik" },
+        gelisim: { isim: "Yaratıcı Eylem", yazar: "Brenda Ueland", resim: "", aciklama: "Sanatsal yönü güçlü Balıkların yaratıcılığını serbest bırakması için.", tur: "gelisim" }
     },
     koc: {
-        genel: { isim: "Simyacı", yazar: "Paulo Coelho", resim: "mevcut degil", aciklama: "Maceracı ve öncü Koçların yolculuk arzularına hitap eden ilham verici bir eser.", tur: "genel" },
-        fantastik: { isim: "Silmarillion", yazar: "J.R.R. Tolkien", resim: "mevcut degil", aciklama: "Kapsamlı mitoloji ve yaratılış hikayelerini seven Koçlar için.", tur: "fantastik" },
-        gelisim: { isim: "Motivasyon", yazar: "Daniel H. Pink", resim: "mevcut degil", aciklama: "İçgüdüsel Koçların nasıl motive olduğunu anlaması için bilimsel bir yaklaşım.", tur: "gelisim" }
+        genel: { isim: "Simyacı", yazar: "Paulo Coelho", resim: "", aciklama: "Maceracı ve öncü Koçların yolculuk arzularına hitap eden ilham verici bir eser.", tur: "genel" },
+        fantastik: { isim: "Silmarillion", yazar: "J.R.R. Tolkien", resim: "", aciklama: "Kapsamlı mitoloji ve yaratılış hikayelerini seven Koçlar için.", tur: "fantastik" },
+        gelisim: { isim: "Motivasyon", yazar: "Daniel H. Pink", resim: "", aciklama: "İçgüdüsel Koçların nasıl motive olduğunu anlaması için bilimsel bir yaklaşım.", tur: "gelisim" }
     },
     boga: {
-        genel: { isim: "Gurur ve Önyargı", yazar: "Jane Austen", resim: "mevcut degil", aciklama: "Zevkine düşkün ve sabit fikirli Boğaların keyifle okuyacağı bir aşk klasiği.", tur: "genel" },
-        fantastik: { isim: "Sır", yazar: "Rhonda Byrne", resim: "mevcut degil", aciklama: "Maddi güvenceye önem veren Boğaların zenginlik psikolojisini anlaması için.", tur: "gelisim" }, // Tür yanlış girilmiş, düzeltildi
-        gelisim: { isim: "Zengin Baba Yoksul Baba", yazar: "Robert Kiyosaki", resim: "mevcut degil", aciklama: "Finansal istikrarı önemseyen Boğalar için yatırım bilgeliği.", tur: "gelisim" }
+        genel: { isim: "Gurur ve Önyargı", yazar: "Jane Austen", resim: "", aciklama: "Zevkine düşkün ve sabit fikirli Boğaların keyifle okuyacağı bir aşk klasiği.", tur: "genel" },
+        fantastik: { isim: "Sır", yazar: "Rhonda Byrne", resim: "", aciklama: "Maddi güvenceye önem veren Boğaların zenginlik psikolojisini anlaması için.", tur: "fantastik" }, // Tür Düzeltildi
+        gelisim: { isim: "Zengin Baba Yoksul Baba", yazar: "Robert Kiyosaki", resim: "", aciklama: "Finansal istikrarı önemseyen Boğalar için yatırım bilgeliği.", tur: "gelisim" }
     },
     ikizler: {
-        genel: { isim: "Ulysses", yazar: "James Joyce", resim: "mevcut degil", aciklama: "Çok yönlü ve hızlı düşünen İkizlerin zekasına meydan okuyan modern bir başyapıt.", tur: "genel" },
-        fantastik: { isim: "Kum Saati", yazar: "Neil Gaiman", resim: "mevcut degil", aciklama: "Hikaye anlatımının farklı katmanlarını seven İkizler için karmaşık bir eser.", tur: "fantastik" },
-        gelisim: { isim: "Hızlı ve Yavaş Düşünme", yazar: "Daniel Kahneman", resim: "mevcut degil", aciklama: "Analitik ve meraklı İkizlerin karar mekanizmalarını incelemesi için.", tur: "gelisim" }
+        genel: { isim: "Ulysses", yazar: "James Joyce", resim: "", aciklama: "Çok yönlü ve hızlı düşünen İkizlerin zekasına meydan okuyan modern bir başyapıt.", tur: "genel" },
+        fantastik: { isim: "Kum Saati", yazar: "Neil Gaiman", resim: "", aciklama: "Hikaye anlatımının farklı katmanlarını seven İkizler için karmaşık bir eser.", tur: "fantastik" },
+        gelisim: { isim: "Hızlı ve Yavaş Düşünme", yazar: "Daniel Kahneman", resim: "", aciklama: "Analitik ve meraklı İkizlerin karar mekanizmalarını incelemesi için.", tur: "gelisim" }
     },
     yengec: {
-        genel: { isim: "Küçük Prens", yazar: "Antoine de Saint-Exupéry", resim: "mevcut degil", aciklama: "Duyarlı ve evine düşkün Yengeçlerin içindeki çocuğu ortaya çıkaran zamansız bir klasik.", tur: "genel" },
-        fantastik: { isim: "Narnia Günlükleri", yazar: "C.S. Lewis", resim: "mevcut degil", aciklama: "Aile ve ev temalarını seven Yengeçler için sıcak bir fantastik seri.", tur: "fantastik" },
-        gelisim: { isim: "Mindfulness", yazar: "Jon Kabat-Zinn", resim: "mevcut degil", aciklama: "Duygusal dalgalanmaları yönetmek isteyen Yengeçler için farkındalık rehberi.", tur: "gelisim" }
+        genel: { isim: "Küçük Prens", yazar: "Antoine de Saint-Exupéry", resim: "", aciklama: "Duyarlı ve evine düşkün Yengeçlerin içindeki çocuğu ortaya çıkaran zamansız bir klasik.", tur: "genel" },
+        fantastik: { isim: "Narnia Günlükleri", yazar: "C.S. Lewis", resim: "", aciklama: "Aile ve ev temalarını seven Yengeçler için sıcak bir fantastik seri.", tur: "fantastik" },
+        gelisim: { isim: "Mindfulness", yazar: "Jon Kabat-Zinn", resim: "", aciklama: "Duygusal dalgalanmaları yönetmek isteyen Yengeçler için farkındalık rehberi.", tur: "gelisim" }
     },
     aslan: {
-        genel: { isim: "Muhteşem Gatsby", yazar: "F. Scott Fitzgerald", resim: "mevcut degil", aciklama: "Görkemli ve dikkat çekici Aslanların ihtişam ve aşk hikayesi.", tur: "genel" },
-        fantastik: { isim: "Taht Oyunları", yazar: "George R.R. Martin", resim: "mevcut degil", aciklama: "İktidar, liderlik ve drama seven Aslanlar için epik bir seri.", tur: "fantastik" },
-        gelisim: { isim: "Liderlik", yazar: "John C. Maxwell", resim: "mevcut degil", aciklama: "Doğuştan lider Aslanların yeteneklerini geliştirmesi için temel bir eser.", tur: "gelisim" }
+        genel: { isim: "Muhteşem Gatsby", yazar: "F. Scott Fitzgerald", resim: "", aciklama: "Görkemli ve dikkat çekici Aslanların ihtişam ve aşk hikayesi.", tur: "genel" },
+        fantastik: { isim: "Taht Oyunları", yazar: "George R.R. Martin", resim: "", aciklama: "İktidar, liderlik ve drama seven Aslanlar için epik bir seri.", tur: "fantastik" },
+        gelisim: { isim: "Liderlik", yazar: "John C. Maxwell", resim: "", aciklama: "Doğuştan lider Aslanların yeteneklerini geliştirmesi için temel bir eser.", tur: "gelisim" }
     },
     basak: {
-        genel: { isim: "Gazap Üzümleri", yazar: "John Steinbeck", resim: "mevcut degil", aciklama: "Analitik ve detaycı Başakların toplumsal gerçeklere odaklanması için.", tur: "genel" },
-        fantastik: { isim: "Kayıp Şehir Z", yazar: "David Grann", resim: "mevcut degil", aciklama: "Gizemleri çözmeyi seven Başakların okuyacağı gerçek olaylardan esinlenen bir macera.", tur: "fantastik" },
-        gelisim: { isim: "Düzenli Olmanın Sanatı", yazar: "Marie Kondo", resim: "mevcut degil", aciklama: "Detaycı ve düzenli Başakların hayatlarını sadeleştirmesi için pratik bir rehber.", tur: "gelisim" }
+        genel: { isim: "Gazap Üzümleri", yazar: "John Steinbeck", resim: "", aciklama: "Analitik ve detaycı Başakların toplumsal gerçeklere odaklanması için.", tur: "genel" },
+        fantastik: { isim: "Kayıp Şehir Z", yazar: "David Grann", resim: "", aciklama: "Gizemleri çözmeyi seven Başakların okuyacağı gerçek olaylardan esinlenen bir macera.", tur: "fantastik" },
+        gelisim: { isim: "Düzenli Olmanın Sanatı", yazar: "Marie Kondo", resim: "", aciklama: "Detaycı ve düzenli Başakların hayatlarını sadeleştirmesi için pratik bir rehber.", tur: "gelisim" }
     }
 };
 
@@ -98,7 +99,7 @@ const isimInput = document.getElementById('isim-input');
 const dogumGunuInput = document.getElementById('dogum-gunu-input');
 const dogumAyiSelect = document.getElementById('dogum-ayi-select');
 const yasInput = document.getElementById('yas-input');
-const turSelect = document.getElementById('tur-select'); // Hatanın çözüldüğü kısım
+const turSelect = document.getElementById('tur-select');
 const oneriButonu = document.getElementById('oneri-butonu');
 const hesaplananBurcAlani = document.getElementById('hesaplanan-burc');
 const sonucAlani = document.getElementById('sonuc-alani');
@@ -187,7 +188,6 @@ function oyKaydet(kitapAdi, yazarAdi, oyTipi) {
             alert("Oylama kaydedilirken bir hata oluştu. (Firebase kurallarınızı kontrol edin)");
         } else if (committed) {
             console.log("Oylama başarıyla kaydedildi.");
-            // İstatistikler otomatik güncelleneceği için ek bir işlem gerekmez
         }
     });
 }
@@ -195,16 +195,25 @@ function oyKaydet(kitapAdi, yazarAdi, oyTipi) {
 // --- KİTAP ÖNERİ FONKSİYONLARI ---
 
 function oneriGoster(kitap, burc, isim) {
-    const burcAdi = burcIsimleri[burc];
+    const burcAdi = burcIsimleri[bur];
     const isimParcasi = isim ? `${capitalizeFirstLetter(isim)}, ` : '';
     
     // Kitabın key'ini oluştur
     const kitapKey = `${kitap.isim}-${kitap.yazar}`.replace(/[\.\#\$\/\[\]]/g, '_');
 
+    // Takımyıldız resmi için doğru yolu oluştur
+    const takimYildizYol = `img/${burc}.png`;
+    const takimYildizKucukYol = `img/${burc}_small.png`;
+
+    // Resim var mı kontrolü (Bu kontrol resim yükleme sorununa direkt çözüm olmasa da kartın bozulmasını engeller)
+    const resimHtml = kitap.resim 
+        ? `<img src="${kitap.resim}" alt="${kitap.isim} Kapak" class="kitap-resmi">`
+        : `<img src="${takimYildizYol}" alt="${burcAdi} Takımyıldızı" class="kitap-resmi">`; // Kapak resmi yoksa Takımyıldızı kullan
+
     sonucAlani.innerHTML = `
         <h3>${isimParcasi}İşte Sana Özel Öneri:</h3>
         <div class="kitap-kart animated-result">
-            <img src="img/${burc}.png" alt="${burcAdi} Takımyıldızı" class="kitap-resmi">
+            ${resimHtml}
             <div class="kitap-bilgi">
                 <strong>${kitap.isim}</strong>
                 <p>Yazar: ${kitap.yazar}</p>
@@ -212,7 +221,7 @@ function oneriGoster(kitap, burc, isim) {
                 <p class="kitap-aciklama">${kitap.aciklama}</p>
                 <a class="arama-basligi" href="https://www.google.com/search?q=${kitap.isim}+kitap+fiyat" target="_blank">Google'da Fiyatını Ara</a>
             </div>
-            <img src="img/${burc}_small.png" alt="${burcAdi} Takımyıldızı Küçük" class="takimyildiz-kucuk">
+            <img src="${takimYildizKucukYol}" alt="${burcAdi} Takımyıldızı Küçük" class="takimyildiz-kucuk">
         </div>
 
         <div class="button-group">
@@ -227,7 +236,7 @@ function oneriGoster(kitap, burc, isim) {
         <div class="oylama-alani">
             <p>Bu kitabı beğendin mi?</p>
             <button class="oy-butonu like-butonu" onclick="oyKaydet('${kitap.isim}', '${kitap.yazar}', 'like')"><i class="fas fa-thumbs-up"></i> Beğen</button>
-            <span class="oy-sayisi">0 | 0</span> <button class="oy-butonu dislike-butonu" onclick="oyKaydet('${kitap.isim}', '${kitap.yazar}', 'dislike')"><i class="fas fa-thumbs-down"></i> Beğenme</button>
+            <span class="oy-sayisi loading-text"><span>.</span><span>.</span><span>.</span></span> <button class="oy-butonu dislike-butonu" onclick="oyKaydet('${kitap.isim}', '${kitap.yazar}', 'dislike')"><i class="fas fa-thumbs-down"></i> Beğenme</button>
         </div>
     `;
 
@@ -239,6 +248,8 @@ function oneriGoster(kitap, burc, isim) {
             const likes = data.likes || 0;
             const dislikes = data.dislikes || 0;
             oySayisiAlani.textContent = `${likes} | ${dislikes}`;
+        } else {
+            oySayisiAlani.textContent = `0 | 0`;
         }
     });
 }
@@ -328,9 +339,11 @@ function favorileriGoster() {
         for (const key in favoriler) {
             const fav = favoriler[key];
             const burcKey = Object.keys(burcIsimleri).find(k => burcIsimleri[k] === fav.burcAdi);
+            const takimYildizYol = `img/${burcKey}.png`;
+            
             html += `
                 <div class="kitap-kart favori-kart">
-                    <img src="img/${burcKey}.png" alt="${fav.burcAdi} Takımyıldızı" class="kitap-resmi">
+                    <img src="${takimYildizYol}" alt="${fav.burcAdi} Takımyıldızı" class="kitap-resmi">
                     <div class="kitap-bilgi">
                         <strong>${fav.isim}</strong>
                         <p>Yazar: ${fav.yazar}</p>
