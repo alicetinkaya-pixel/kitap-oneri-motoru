@@ -1,3 +1,4 @@
+/* Bu kodun tamamını style.css dosyanızın içeriğiyle değiştirin. */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f9;
@@ -6,8 +7,8 @@ body {
     padding: 0;
     transition: background-color 0.5s, color 0.5s;
     min-height: 100vh;
-    display: flex; /* Footer'ı alta sabitlemek için */
-    flex-direction: column; /* Footer'ı alta sabitlemek için */
+    display: flex;
+    flex-direction: column;
 }
 
 /* --- Genel Yapı --- */
@@ -16,7 +17,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    flex-grow: 1; /* İçeriğin esnemesini sağla */
+    flex-grow: 1;
 }
 
 .content {
@@ -33,25 +34,24 @@ header {
     text-align: center;
     position: relative;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    display: flex; /* İçindeki elemanları hizalamak için */
-    justify-content: space-between; /* Butonları ve başlığı ayırmak için */
-    align-items: center; /* Dikeyde ortala */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header h1 {
     margin: 0;
     font-size: 2em;
     font-weight: 300;
-    flex-grow: 1; /* Başlığın ortada kalmasını sağla */
+    flex-grow: 1;
 }
 
-/* Sağ üstteki butonları ve sosyal medya ikonunu sarmalayan div */
 .header-right-buttons {
-    position: absolute; /* Sağ üste sabitle */
+    position: absolute;
     top: 15px;
     right: 20px;
     display: flex;
-    gap: 10px; /* Butonlar arasına boşluk */
+    gap: 10px;
     align-items: center;
 }
 
@@ -66,11 +66,11 @@ header h1 {
 }
 
 .form-container {
-    flex: 1 1 300px; /* Esnekliği ayarla */
+    flex: 1 1 300px;
 }
 
 .result-container {
-    flex: 2 1 400px; /* Daha fazla yer kaplasın */
+    flex: 2 1 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -129,7 +129,7 @@ input[type="text"], input[type="number"], select {
     background-color: #333;
     color: white;
     border: none;
-    border-radius: 5-px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 1.1em;
     margin-top: 10px;
@@ -155,18 +155,17 @@ input[type="text"], input[type="number"], select {
     background-color: rgba(255, 255, 255, 0.4);
 }
 
-/* YENİ: Sosyal medya ikonu butonu */
 .social-icon-button {
-    display: inline-flex; /* İkonu ve metni hizala (eğer metin olsaydı) */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 38px; /* Buton genişliği */
-    height: 38px; /* Buton yüksekliği */
-    border-radius: 50%; /* Yuvarlak buton */
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.2);
     color: white;
-    text-decoration: none; /* Alt çizgiyi kaldır */
-    font-size: 1.2em; /* İkon boyutu */
+    text-decoration: none;
+    font-size: 1.2em;
     transition: background-color 0.3s;
 }
 
@@ -209,17 +208,6 @@ input[type="text"], input[type="number"], select {
     object-fit: cover;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* YENİ EK: Kitap Kapağı için Placeholder. Kitap kapağı görseli yoksa bu stil devreye girer. */
-.kitap-resmi.placeholder {
-    width: 0; /* Boş alanı daralt */
-    height: 0;
-    padding: 0;
-    margin: 0;
-    border: none;
-    box-shadow: none;
-    visibility: hidden; /* Tamamen gizle */
 }
 
 .kitap-bilgi {
@@ -322,7 +310,7 @@ input[type="text"], input[type="number"], select {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    display: none; /* Varsayılan olarak gizli */
+    display: none;
 }
 
 #favoriler-alani.goster, #yonetici-paneli.goster {
@@ -410,7 +398,7 @@ input[type="text"], input[type="number"], select {
 }
 
 .like-butonu {
-    background-color: #4CAF50; /* Yeşil */
+    background-color: #4CAF50;
     color: white;
 }
 
@@ -419,7 +407,7 @@ input[type="text"], input[type="number"], select {
 }
 
 .dislike-butonu {
-    background-color: #F44336; /* Kırmızı */
+    background-color: #F44336;
     color: white;
 }
 
@@ -442,10 +430,9 @@ input[type="text"], input[type="number"], select {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-top: 30px;
-    /* GİZLE/GÖSTER GEÇİŞİ İÇİN DÜZELTME */
     transition: max-height 0.4s ease-out, padding 0.4s ease-out, opacity 0.4s ease, margin 0.4s ease-out;
     overflow: hidden; 
-    max-height: 500px; /* Görünür haldeki yükseklik */
+    max-height: 500px;
     opacity: 1; 
 }
 
@@ -544,7 +531,7 @@ input[type="text"], input[type="number"], select {
 }
 
 
-/* --- FOOTER STİLLERİ (YENİ EKLENDİ) --- */
+/* --- FOOTER STİLLERİ --- */
 
 footer {
     background-color: #333;
@@ -552,7 +539,7 @@ footer {
     padding: 20px 0;
     text-align: center;
     margin-top: 40px;
-    border-top: 3px solid #f4f4f9; /* Hafif bir ayırıcı */
+    border-top: 3px solid #f4f4f9;
 }
 
 .footer-content p {
@@ -588,7 +575,6 @@ body.dark-mode header {
     background-color: #000;
 }
 
-/* Dark mode'da butonlar ve sosyal medya ikonu */
 body.dark-mode #yonetici-goster-butonu, 
 body.dark-mode #tema-degistir-butonu,
 body.dark-mode .social-icon-button {
@@ -671,7 +657,6 @@ body.dark-mode .oy-sayisi {
     color: #ddd;
 }
 
-/* DARK MODE İSTATİSTİK */
 body.dark-mode .istatistik-alani {
     background-color: #1e1e1e;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -704,7 +689,6 @@ body.dark-mode .gizle-butonu:hover {
     background-color: #333;
 }
 
-/* DARK MODE FOOTER */
 body.dark-mode footer {
     background-color: #000;
     border-top: 3px solid #1e1e1e;
@@ -740,7 +724,7 @@ body.dark-mode .uyari-metni {
     }
 
     .kitap-resmi {
-        order: -1; /* Resmi başa al */
+        order: -1;
         margin-bottom: 10px;
     }
 
@@ -757,20 +741,19 @@ body.dark-mode .uyari-metni {
         margin: 5px;
     }
 
-    /* Yönetici, Tema ve Sosyal Medya butonlarını mobil için ayarla */
     .header-right-buttons {
-        position: static; /* Sabit konumdan çıkar */
+        position: static;
         width: 100%;
         justify-content: center;
         margin-bottom: 10px;
-        order: 2; /* Yönetici butonundan sonra gelsin */
+        order: 2;
     }
 
     #yonetici-goster-butonu {
         position: static;
         margin-bottom: 10px;
         width: 100%;
-        order: 1; /* En başa al */
+        order: 1;
     }
 
     header {
@@ -780,7 +763,7 @@ body.dark-mode .uyari-metni {
     }
 
     header h1 {
-        order: 3; /* En sona al */
-        margin-top: 10px; /* Butonlardan sonra boşluk */
+        order: 3;
+        margin-top: 10px;
     }
 }
