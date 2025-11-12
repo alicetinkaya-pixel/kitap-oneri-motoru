@@ -4,10 +4,11 @@
 
 const firebaseConfig = {
     // BURAYA KENDİ GERÇEK FIREBASE BİLGİLERİNİZİ YAPIŞTIRIN!
+    // Bu bilgiler sizin görselinizdeki veritabanına aittir.
     apiKey: "AIzaSyCRCFgjybvfnpdB4U2nL2u3vg5nH9fzJzs", 
     authDomain: "kitap-oneri-motoru-canli-b7b8f.firebaseapp.com",
     projectId: "kitap-oneri-motoru-canli-b7b8f",
-    storageBucket: "kitap-oneri-motoru-canli-b7b8f.firebasestorage.app",
+    storageBucket: "kitap-oneri-motoru-canli-b7b8f.appspot.com", // Adres düzeltildi
     messagingSenderId: "289804477639",
     appId: "1:289804477639:web:f609dd649e40d25d1acae2",
     measurementId: "G-V0LREF2YQL"
@@ -19,7 +20,7 @@ const database = app.database();
 const kitaplarRef = database.ref('kitaplar'); // Tüm kitap verilerini tutacağımız ana referans
 
 // ==========================================================
-// 2. KİTAP VE BURÇ VERİLERİ (RESİM SORUNU DÜZELTİLDİ)
+// 2. KİTAP VE BURÇ VERİLERİ (RESİM VE KOD UYUMLULUĞU İÇİN BOŞ RESİMLER)
 // ==========================================================
 
 const kitapVerileri = {
@@ -60,7 +61,7 @@ const kitapVerileri = {
     },
     boga: {
         genel: { isim: "Gurur ve Önyargı", yazar: "Jane Austen", resim: "", aciklama: "Zevkine düşkün ve sabit fikirli Boğaların keyifle okuyacağı bir aşk klasiği.", tur: "genel" },
-        fantastik: { isim: "Sır", yazar: "Rhonda Byrne", resim: "", aciklama: "Maddi güvenceye önem veren Boğaların zenginlik psikolojisini anlaması için.", tur: "fantastik" }, // Tür Düzeltildi
+        fantastik: { isim: "Sır", yazar: "Rhonda Byrne", resim: "", aciklama: "Maddi güvenceye önem veren Boğaların zenginlik psikolojisini anlaması için.", tur: "fantastik" },
         gelisim: { isim: "Zengin Baba Yoksul Baba", yazar: "Robert Kiyosaki", resim: "", aciklama: "Finansal istikrarı önemseyen Boğalar için yatırım bilgeliği.", tur: "gelisim" }
     },
     ikizler: {
@@ -92,14 +93,14 @@ const burcIsimleri = {
 };
 
 // ==========================================================
-// 3. DOM ELEMANLARI
+// 3. DOM ELEMANLARI (REFERANS HATASI DÜZELTİLDİ)
 // ==========================================================
 
 const isimInput = document.getElementById('isim-input');
 const dogumGunuInput = document.getElementById('dogum-gunu-input');
 const dogumAyiSelect = document.getElementById('dogum-ayi-select');
 const yasInput = document.getElementById('yas-input');
-const turSelect = document.getElementById('tur-select');
+const turSelect = document.getElementById('tur-select'); // Hatanın kaynağı buydu. index.html ID'si ile eşleşiyor.
 const oneriButonu = document.getElementById('oneri-butonu');
 const hesaplananBurcAlani = document.getElementById('hesaplanan-burc');
 const sonucAlani = document.getElementById('sonuc-alani');
@@ -205,10 +206,10 @@ function oneriGoster(kitap, burc, isim) {
     const takimYildizYol = `img/${burc}.png`;
     const takimYildizKucukYol = `img/${burc}_small.png`;
 
-    // Resim var mı kontrolü (Bu kontrol resim yükleme sorununa direkt çözüm olmasa da kartın bozulmasını engeller)
+    // Kitap resmi boşsa, takımyıldız resmini kullan.
     const resimHtml = kitap.resim 
         ? `<img src="${kitap.resim}" alt="${kitap.isim} Kapak" class="kitap-resmi">`
-        : `<img src="${takimYildizYol}" alt="${burcAdi} Takımyıldızı" class="kitap-resmi">`; // Kapak resmi yoksa Takımyıldızı kullan
+        : `<img src="${takimYildizYol}" alt="${burcAdi} Takımyıldızı" class="kitap-resmi">`;
 
     sonucAlani.innerHTML = `
         <h3>${isimParcasi}İşte Sana Özel Öneri:</h3>
@@ -236,7 +237,8 @@ function oneriGoster(kitap, burc, isim) {
         <div class="oylama-alani">
             <p>Bu kitabı beğendin mi?</p>
             <button class="oy-butonu like-butonu" onclick="oyKaydet('${kitap.isim}', '${kitap.yazar}', 'like')"><i class="fas fa-thumbs-up"></i> Beğen</button>
-            <span class="oy-sayisi loading-text"><span>.</span><span>.</span><span>.</span></span> <button class="oy-butonu dislike-butonu" onclick="oyKaydet('${kitap.isim}', '${kitap.yazar}', 'dislike')"><i class="fas fa-thumbs-down"></i> Beğenme</button>
+            <span class="oy-sayisi loading-text"><span>.</span><span>.</span><span>.</span></span>
+            <button class="oy-butonu dislike-butonu" onclick="oyKaydet('${kitap.isim}', '${kitap.yazar}', 'dislike')"><i class="fas fa-thumbs-down"></i> Beğenme</button>
         </div>
     `;
 
@@ -273,7 +275,7 @@ function istatistikleriGuncelle(kitaplar) {
     populerListe.innerHTML = '';
     
     kitapListesi.slice(0, 5).forEach((kitap, index) => {
-        if (kitap.netPuan > -5) { // Sadece çok fazla dislike almayanları göster
+        if (kitap.netPuan > -5) {
             populerListe.innerHTML += `
                 <div class="populer-kitap-item">
                     <span class="kitap-sira">#${index + 1}</span>
@@ -440,6 +442,7 @@ oneriButonu.addEventListener('click', () => {
     const tur = turSelect.value;
     const isim = isimInput.value.trim();
 
+    // Hata düzeltmesi: Tüm zorunlu alanların dolu olup olmadığı kontrol ediliyor
     if (!gun || !ay || !tur || !yasInput.value) {
         alert("Lütfen tüm alanları (Gün, Ay, Yaş ve Tür) doldurun.");
         return;
